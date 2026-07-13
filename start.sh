@@ -35,7 +35,8 @@ install_software() {
     python3 -m pip install --upgrade pip
 
     echo "[4/5] Instalando bibliotecas Python..."
-    pip3 install -U playwright flask
+    pip3 install -U playwright 
+	pip3 install flask --ignore-installed blinker
 
     echo "[5/5] Instalando Chromium do Playwright..."
     playwright install

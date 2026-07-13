@@ -38,7 +38,8 @@ install_software() {
     pip3 install -U playwright flask
 
     echo "[5/5] Instalando Chromium do Playwright..."
-    python3 -m playwright install chromium
+    playwright install
+	playwright install-deps
 
     echo ""
     echo "Instalação concluída."

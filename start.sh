@@ -10,6 +10,7 @@ echo "  [3] Completo (criar contas + streaming)"
 echo "  [4] Parar tudo"
 echo "  [5] Ver logs"
 echo "  [6] Ver sessoes ativas"
+echo "  [7] Instalar Sofware"
 echo ""
 echo "=================================="
 read -p "  Escolhe: " opcao
@@ -64,7 +65,38 @@ case $opcao in
     echo "  Sessoes screen ativas:"
     screen -ls | grep boom || echo "  (nenhuma)"
     ;;
+   7)
+    install_software
+    ;;
   *)
     echo "  Opcao invalida"
     ;;
 esac
+
+install_software() {
+
+    echo "[1/5] Atualizando sistema..."
+
+    echo "[2/5] Instalando dependências..."
+    sudo apt install -y \
+        python3 \
+        python3-pip \
+        git \
+        curl \
+        wget \
+        unzip \
+        screen \
+        xvfb
+
+    echo "[3/5] Atualizando pip..."
+    python3 -m pip install --upgrade pip
+
+    echo "[4/5] Instalando bibliotecas Python..."
+    pip3 install -U playwright flask
+
+    echo "[5/5] Instalando Chromium do Playwright..."
+    python3 -m playwright install chromium
+
+    echo ""
+    echo "Instalação concluída."
+}
